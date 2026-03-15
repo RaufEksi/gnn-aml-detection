@@ -1,0 +1,12 @@
+# Python önbellek dosyaları
+__pycache__/
+*.pyc
+
+# Sanal ortam
+venv/
+
+# Veri setleri (GitHub'a atılmaz)
+data/
+
+# Çevresel değişkenler (ilerisi için)
+.env
