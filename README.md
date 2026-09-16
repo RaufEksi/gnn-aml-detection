@@ -19,30 +19,33 @@ The application is fully containerized to eliminate environment dependencies. To
 
 ```bash
 # 1. Clone the repository
-git clone [https://github.com/RaufEksi/gnn_aml_project.git](https://github.com/RaufEksi/gnn_aml_project.git)
-cd gnn_aml_project
+git clone https://github.com/RaufEksi/gnn-aml-detection.git
+cd gnn-aml-detection
 
 # 2. Build the Docker image
 docker build -t gnn-fraud-api .
 
 # 3. Run the container
 docker run -d -p 8000:8000 --name aml-api gnn-fraud-api
+```
 
-API Usage
+## API Usage
 Once the container is running, the interactive API documentation (Swagger UI) is available at http://localhost:8000/docs.
 
 The API expects a subgraph of a transaction environment to make inductive predictions.
 
-Endpoint: POST /predict
-Payload Example:
+**Endpoint:** `POST /predict`
+**Payload Example:**
 
-JSON
+```json
 {
-  "x": [[...], [...], [...]], 
+  "x": [[...], [...], [...]],
   "edge_index": [[0, 1], [0, 2]],
   "target_node_idx": 0
 }
-Model Performance & Methodology
+```
+
+## Model Performance & Methodology
 The dataset presents a highly imbalanced class distribution (illicit transactions constitute a very small minority). To mitigate this, the loss function (CrossEntropyLoss) is strictly weighted.
 
 Validation Strategy: Temporal split (preventing data leakage from future transactions).
